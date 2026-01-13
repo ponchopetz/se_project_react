@@ -1,10 +1,8 @@
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-import { defaultClothingItems } from "../../utils/constants.js";
-import { useState } from "react";
 
-function Main({ weatherData, handleCardClick }) {
+function Main({ weatherData, clothingItems, handleCardClick }) {
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
@@ -15,7 +13,7 @@ function Main({ weatherData, handleCardClick }) {
         </p>
       </section>
       <ul className="cards-list">
-        {defaultClothingItems
+        {clothingItems
           .filter((item) => {
             return item.weather === weatherData.type;
           })
