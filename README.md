@@ -34,7 +34,7 @@ The project focuses on **component-based architecture**, **state management**, a
 ## 🚀 Live Deployment
 
 👉 **GitHub Pages:**  
-https://YOUR_USERNAME.github.io/se_project_react/
+https://ponchopetz.github.io/se_project_react/
 
 ---
 
@@ -43,6 +43,6 @@ https://YOUR_USERNAME.github.io/se_project_react/
 Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/se_project_react.git
+git clone https://github.com/ponchopetz/se_project_react.git
 cd se_project_react
 ```
