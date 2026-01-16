@@ -1,13 +1,33 @@
 import "./WeatherCard.css";
-import sunnyDay from "../../assets/sunny_day.png";
+import { weatherCards } from "../../utils/constants.js";
+
+const DEFAULT_DAY = new URL("../assets/day/clear_day.png", import.meta.url)
+  .href;
+
+const DEFAULT_NIGHT = new URL(
+  "../assets/night/clear_night.png",
+  import.meta.url
+).href;
+
 function WeatherCard({ weatherData }) {
+  const timeOfDay = weatherData.isDay ? "day" : "night";
+
+  const imageUrl =
+    weatherCards[timeOfDay]?.[weatherData.condition] ??
+    (weatherData.isDay ? DEFAULT_DAY : DEFAULT_NIGHT);
+
   return (
     <section className="weather-card">
       <p className="weather-card__temp">
         {Math.round(weatherData.temp.F)}&deg;F
       </p>
-      <img src={sunnyDay} alt="sunny" className="weather-card__image" />
+      <img
+        src={imageUrl}
+        alt={weatherData.condition || "weather"}
+        className="weather-card__image"
+      />
     </section>
   );
 }
+
 export default WeatherCard;

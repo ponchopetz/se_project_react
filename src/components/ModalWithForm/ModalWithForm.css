@@ -118,3 +118,14 @@
   opacity: 0.6;
   cursor: pointer;
 }
+
+@media screen and (max-width: 630px) {
+  .modal_type_form {
+    align-items: end;
+  }
+
+  .modal__content_type_form {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

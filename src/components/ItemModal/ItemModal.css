@@ -9,6 +9,7 @@
 
 .modal__close_type_preview:hover {
   background-image: url(../../assets/x_icon.svg);
+  border-radius: inherit;
 }
 
 .modal__image {

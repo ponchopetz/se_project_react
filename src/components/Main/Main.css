@@ -7,3 +7,20 @@
   padding: 0;
   justify-content: space-evenly;
 }
+
+.weather-data__text {
+  font-size: 1.25em;
+  line-height: 1;
+  margin: 40px 0 34px;
+}
+
+@media screen and (max-width: 630px) {
+  .cards-list {
+    grid-template-columns: repeat(auto-fit, 164px);
+    gap: 16px;
+  }
+
+  .weather-data__text {
+    margin: 32px 0 20px;
+  }
+}
