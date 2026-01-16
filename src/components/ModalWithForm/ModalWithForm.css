@@ -8,6 +8,7 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.1s linear 0.3s, opacity 0.3s linear;
+  cursor: pointer;
 }
 
 .modal_opened {
@@ -24,6 +25,7 @@
   background-color: #fff;
   position: relative;
   padding: 28px 28px 32px;
+  cursor: default;
 }
 
 .modal__title {

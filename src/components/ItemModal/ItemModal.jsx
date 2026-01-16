@@ -1,8 +1,18 @@
 import "./ItemModal.css";
+import { useRef } from "react";
+import { useModalClose } from "../../hooks/useModalClose.js";
 
 function ItemModal({ isOpen, card, onClose }) {
+  const overlayRef = useRef(null);
+
+  useModalClose({
+    isOpen,
+    onClose,
+    overlayRef,
+  });
+
   return (
-    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
+    <div ref={overlayRef} className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content modal__content_type_preview">
         <button
           onClick={onClose}
