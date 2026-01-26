@@ -1,11 +1,7 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import {
-  defaultClothingItems,
-  coordinates,
-  apiKey,
-} from "../../utils/constants.js";
+import { coordinates, apiKey } from "../../utils/constants.js";
 import Header from "../Header/Header";
 import Profile from "../Profile/Profile.jsx";
 import Main from "../Main/Main";
@@ -14,6 +10,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
 import { getWeather, processWeatherData } from "../../utils/weatherApi.js";
+import { getItems, addItem, deleteItem } from "../../utils/api.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 
 function App() {
@@ -26,7 +23,7 @@ function App() {
   });
 
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
@@ -50,18 +47,25 @@ function App() {
   };
 
   const handleAddItemSubmit = (item) => {
-    setClothingItems((prevItems) => [item, ...prevItems]);
-    setActiveModal("");
+    addItem(item)
+      .then((newItem) => {
+        setClothingItems((prevItems) => [newItem, ...prevItems]);
+        setActiveModal("");
+      })
+      .catch(console.error);
   };
 
   const handleCardDelete = () => {
-    setClothingItems((prevItems) =>
-      prevItems.filter((item) => item._id !== cardToDelete._id),
-    );
-
-    setIsConfirmModalOpen(false);
-    setActiveModal("");
-    setCardToDelete(null);
+    deleteItem(cardToDelete._id)
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== cardToDelete._id),
+        );
+        setIsConfirmModalOpen(false);
+        setActiveModal("");
+        setCardToDelete(null);
+      })
+      .catch(console.error);
   };
 
   const openConfirmationModal = (card) => {
@@ -74,6 +78,14 @@ function App() {
       .then((data) => {
         const filteredData = processWeatherData(data);
         setWeatherData(filteredData);
+      })
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((items) => {
+        setClothingItems(items.sort((a, b) => b._id - a._id));
       })
       .catch(console.error);
   }, []);

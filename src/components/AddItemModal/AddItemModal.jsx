@@ -14,7 +14,7 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
     onAddItem({
       _id: Date.now(),
       name: values.imageName,
-      link: values.imageUrl,
+      imageUrl: values.imageUrl,
       weather: values.weather,
     });
     resetForm();

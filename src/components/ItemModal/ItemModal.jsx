@@ -19,7 +19,11 @@ function ItemModal({ isOpen, card, onClose, onDeleteClick }) {
           type="button"
           className="modal__close modal__close_type_preview"
         ></button>
-        <img src={card.link} alt={card.name} className="modal__image" />
+        <img
+          src={card.imageUrl}
+          alt={card.name}
+          className="item-modal__image"
+        />
         <div className="item-modal__footer">
           <div className="item-modal__container">
             <p className="item-modal__caption">{card.name}</p>
