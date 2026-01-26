@@ -11,13 +11,15 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onAddItem({
-      _id: Date.now(),
-      name: values.imageName,
-      imageUrl: values.imageUrl,
-      weather: values.weather,
-    });
-    resetForm();
+    onAddItem(
+      {
+        _id: Date.now(),
+        name: values.imageName,
+        imageUrl: values.imageUrl,
+        weather: values.weather,
+      },
+      resetForm,
+    );
   };
 
   return (

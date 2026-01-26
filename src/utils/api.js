@@ -1,11 +1,6 @@
-const baseUrl = "http://localhost:3001";
+import checkResponse from "./request.js";
 
-const checkResponse = (res) => {
-  if (!res.ok) {
-    return Promise.reject(`Error: ${res.status}`);
-  }
-  return res.json();
-};
+const baseUrl = "http://localhost:3001";
 
 const getItems = async () => {
   const res = await fetch(`${baseUrl}/items`);

@@ -1,9 +1,4 @@
-const checkResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
-};
+import checkResponse from "./request.js";
 
 export const getWeather = async ({ latitude, longitude }, apiKey) => {
   const res = await fetch(
@@ -13,9 +8,9 @@ export const getWeather = async ({ latitude, longitude }, apiKey) => {
 };
 
 const getWeatherType = (temperature) => {
-  if (temperature > 86) {
+  if (temperature >= 86) {
     return "hot";
-  } else if (temperature >= 66 && temperature < 86) {
+  } else if (temperature >= 66) {
     return "warm";
   } else {
     return "cold";

@@ -3,11 +3,11 @@ import { weatherCards } from "../../utils/constants.js";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 
-const DEFAULT_DAY = new URL("../assets/day/clear_day.png", import.meta.url)
+const DEFAULT_DAY = new URL("../../assets/day/clear_day.png", import.meta.url)
   .href;
 
 const DEFAULT_NIGHT = new URL(
-  "../assets/night/clear_night.png",
+  "../../assets/night/clear_night.png",
   import.meta.url,
 ).href;
 

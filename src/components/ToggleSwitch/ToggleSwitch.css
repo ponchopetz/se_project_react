@@ -46,7 +46,7 @@
 
 /* Hover nudge (checked → nudge left) */
 .toggle-switch:hover .toggle-switch__checkbox:checked + .toggle-switch__circle {
-  transform: translateX(calc(100% -));
+  transform: translateX(calc(100% - 2px));
 }
 
 /* TEXT (shared) */
