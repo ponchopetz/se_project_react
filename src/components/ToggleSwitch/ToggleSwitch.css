@@ -1,0 +1,90 @@
+.toggle-switch {
+  margin-left: auto;
+  width: 56px;
+  height: 28px;
+  border: 2px solid #7e7e7e;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.toggle-switch:hover {
+  border-color: #000;
+}
+
+/* Invisible checkbox covering entire switch */
+.toggle-switch__checkbox {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0;
+}
+
+.toggle-switch__circle {
+  width: 28px;
+  height: 28px;
+  background-color: #000;
+  border-radius: 20px;
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+/* Hover nudge (unchecked) */
+.toggle-switch:hover .toggle-switch__circle {
+  transform: translateX(2px);
+}
+
+/* Checked state → move circle fully right */
+.toggle-switch__checkbox:checked + .toggle-switch__circle {
+  transform: translateX(100%);
+}
+
+/* Hover nudge (checked → nudge left) */
+.toggle-switch:hover .toggle-switch__checkbox:checked + .toggle-switch__circle {
+  transform: translateX(calc(100% -));
+}
+
+/* TEXT (shared) */
+.toggle-switch__text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  line-height: 1;
+  z-index: 1;
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+/* Fahrenheit */
+.toggle-switch__text_F {
+  left: 8px;
+  color: #fff;
+}
+
+/* Celsius */
+.toggle-switch__text_C {
+  right: 7px;
+  color: #7e7e7e;
+}
+
+.toggle-switch:hover .toggle-switch__text_C {
+  color: #000;
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__text_F {
+  color: #7e7e7e;
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__text_C {
+  color: #fff;
+}
+
+.toggle-switch:hover .toggle-switch__checkbox:checked ~ .toggle-switch__text_F {
+  color: #000;
+}

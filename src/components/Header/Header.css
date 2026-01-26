@@ -11,6 +11,20 @@
   width: 89px;
   height: 40px;
   margin-right: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  box-sizing: border-box;
+  border-radius: 0;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  background-color: transparent;
+  transition:
+    box-shadow 0.6s ease,
+    border-radius 0.6s ease;
+}
+
+.header__logo:hover {
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .header__date-and-location {
@@ -19,25 +33,45 @@
 
 .header__user-container {
   display: flex;
-  flex-direction: row;
   align-items: center;
   gap: 12px;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 0;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  transition:
+    box-shadow 0.6s ease,
+    border-radius 0.6s ease;
+}
+
+.header__user-container:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border-radius: 20px;
+}
+
+.header__user-container:visited,
+.header__user-container:hover,
+.header__user-container:active {
+  color: inherit;
+  text-decoration: none;
 }
 
 .header__add-clothes-btn {
-  margin: 0 20px 0 auto;
+  margin: 0 20px;
   padding: 0;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .header__add-clothes-btn:hover {
-  cursor: pointer;
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 .header__username {
-  margin: 0;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
 }
 
 .header__avatar {
@@ -53,7 +87,7 @@
   background: url(../../assets/mobilemenu_btn.svg) center no-repeat;
   width: 44px;
   height: 44px;
-  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   font-size: 0;
   cursor: pointer;
   position: absolute;
@@ -72,76 +106,13 @@
   border-radius: 0;
 }
 
-.header__menu-btn_opened:hover {
-  opacity: 0.6;
-}
-
-/* Mobile menu container */
-.mobile-menu {
-  position: fixed;
-  top: 18px; /* aligns with header padding */
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: calc(100% - 32px); /* matches page padding */
-  max-width: 630px;
-
-  background-color: white;
-  border-radius: 12px;
-  padding: 60px 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-
-  visibility: hidden;
-  opacity: 0;
-
-  transition: visibility 0.1s linear 0.3s, opacity 0.3s linear;
-
-  z-index: 100;
-}
-
-.mobile-menu_opened {
-  display: flex;
-
-  visibility: visible;
-  opacity: 1;
-  transition-delay: 0s;
-}
-
-.mobile-menu__user-container {
-  display: flex;
-}
-
-.mobile-menu__username {
-  margin: 0;
-  font-weight: 700;
-  line-height: 1;
-  align-self: center;
-  margin-right: 12px;
-}
-
-.mobile-menu__add-btn {
-  border: none;
-  background: transparent;
-  font-size: 20px;
-  line-height: 1.2;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.mobile-menu__add-btn:hover {
-  opacity: 0.4;
-}
-
-@media screen and (max-width: 630px) {
+@media screen and (max-width: 845px) {
   .header {
     padding: 18px 0 16px;
     flex-direction: column;
     align-items: flex-start;
   }
+
   .header__date-and-location {
     margin-top: 32px;
   }

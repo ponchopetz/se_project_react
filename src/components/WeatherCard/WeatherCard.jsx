@@ -1,15 +1,19 @@
 import "./WeatherCard.css";
 import { weatherCards } from "../../utils/constants.js";
+import { useContext } from "react";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 
 const DEFAULT_DAY = new URL("../assets/day/clear_day.png", import.meta.url)
   .href;
 
 const DEFAULT_NIGHT = new URL(
   "../assets/night/clear_night.png",
-  import.meta.url
+  import.meta.url,
 ).href;
 
 function WeatherCard({ weatherData }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
   const timeOfDay = weatherData.isDay ? "day" : "night";
 
   const imageUrl =
@@ -19,7 +23,7 @@ function WeatherCard({ weatherData }) {
   return (
     <section className="weather-card">
       <p className="weather-card__temp">
-        {Math.round(weatherData.temp.F)}&deg;F
+        {weatherData.temp[currentTemperatureUnit]}&deg;{currentTemperatureUnit}
       </p>
       <img
         src={imageUrl}

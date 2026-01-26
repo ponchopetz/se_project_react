@@ -1,11 +1,24 @@
-import { useState } from "react";
 import "./Header.css";
+import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import headerLogo from "../../assets/wtwr_logo.svg";
 import avatar from "../../assets/avatar.png";
 import { getCurrentDate } from "../../utils/dateUtils.js";
+import { useModalClose } from "../../hooks/useModalClose.js";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.jsx";
+import MobileMenu from "./MobileMenu/MobileMenu.jsx";
 
 function Header({ handleAddClick, weatherData }) {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
+  const menuRef = useRef(null);
+
+  const closeMenu = () => setIsMobileMenuOpened(false);
+
+  useModalClose({
+    isOpen: isMobileMenuOpened,
+    onClose: closeMenu,
+    overlayRef: menuRef,
+  });
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpened((prev) => !prev);
@@ -13,10 +26,16 @@ function Header({ handleAddClick, weatherData }) {
 
   return (
     <header className="header">
-      <img className="header__logo" src={headerLogo} alt="WTWR logo" />
+      <Link to="/">
+        <img className="header__logo" src={headerLogo} alt="WTWR logo" />
+      </Link>
+
       <p className="header__date-and-location">
         {getCurrentDate()}, {weatherData.city}
       </p>
+
+      <ToggleSwitch />
+
       <button
         onClick={handleAddClick}
         type="button"
@@ -24,12 +43,12 @@ function Header({ handleAddClick, weatherData }) {
       >
         + Add Clothes
       </button>
-      <div className="header__user-container">
+
+      <Link to="/profile" className="header__user-container">
         <p className="header__username">Terrence Tegegne</p>
         <img className="header__avatar" src={avatar} alt="User avatar" />
-      </div>
+      </Link>
 
-      {/* Mobile menu button */}
       <button
         className={`header__menu-btn ${
           isMobileMenuOpened ? "header__menu-btn_opened" : ""
@@ -40,24 +59,12 @@ function Header({ handleAddClick, weatherData }) {
         {isMobileMenuOpened ? "✕" : "☰"}
       </button>
 
-      {/* Mobile menu */}
-      <div
-        className={`mobile-menu ${
-          isMobileMenuOpened ? "mobile-menu_opened" : ""
-        }`}
-      >
-        <div className="mobile-menu__user-container">
-          <p className="mobile-menu__username">Terrence Tegegne</p>
-          <img className="header__avatar" src={avatar} alt="User avatar" />
-        </div>
-        <button
-          onClick={handleAddClick}
-          type="button"
-          className="mobile-menu__add-btn"
-        >
-          + Add Clothes
-        </button>
-      </div>
+      <MobileMenu
+        isOpen={isMobileMenuOpened}
+        onClose={closeMenu}
+        handleAddClick={handleAddClick}
+        menuRef={menuRef}
+      />
     </header>
   );
 }

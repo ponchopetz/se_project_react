@@ -1,0 +1,23 @@
+.sidebar {
+  width: 100%;
+  max-width: 345px;
+}
+
+.sidebar__user-info {
+  max-width: 229px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+}
+
+.sidebar__username {
+  margin: 0;
+  font-size: 1.25em;
+  line-height: 1;
+}

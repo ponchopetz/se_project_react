@@ -2,7 +2,7 @@ import "./ItemModal.css";
 import { useRef } from "react";
 import { useModalClose } from "../../hooks/useModalClose.js";
 
-function ItemModal({ isOpen, card, onClose }) {
+function ItemModal({ isOpen, card, onClose, onDeleteClick }) {
   const overlayRef = useRef(null);
 
   useModalClose({
@@ -20,9 +20,18 @@ function ItemModal({ isOpen, card, onClose }) {
           className="modal__close modal__close_type_preview"
         ></button>
         <img src={card.link} alt={card.name} className="modal__image" />
-        <div className="modal__footer">
-          <p className="modal__caption">{card.name}</p>
-          <p className="modal__weather">Weather: {card.weather}</p>
+        <div className="item-modal__footer">
+          <div className="item-modal__container">
+            <p className="item-modal__caption">{card.name}</p>
+            <button
+              type="button"
+              className="item-modal__delete-btn"
+              onClick={() => onDeleteClick(card)}
+            >
+              Delete item
+            </button>
+          </div>
+          <p className="item-modal__weather">Weather: {card.weather}</p>
         </div>
       </div>
     </div>

@@ -3,6 +3,8 @@
 }
 
 .modal__close_type_preview {
+  right: 24px;
+  top: 24px;
   background-image: url(../../assets/x_icon_white.svg);
   opacity: 1;
 }
@@ -18,17 +20,40 @@
   border-top-right-radius: inherit;
 }
 
-.modal__footer {
-  margin: 20px 0 32px 32px;
+.item-modal__footer {
+  padding: 20px 32px 32px;
 }
 
-.modal__caption {
+.item-modal__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.item-modal__caption {
   font-size: 1.25em;
   line-height: 24px;
-  margin: 0 0 12px;
+  margin: 0;
 }
 
-.modal__weather {
+.item-modal__delete-btn {
+  font-size: 1.25em;
+  line-height: 24px;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  color: #ff4d00;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.item-modal__delete-btn:hover {
+  opacity: 0.6;
+}
+
+.item-modal__weather {
   font-size: 1.25em;
   line-height: 24px;
   margin: 0;

@@ -7,7 +7,7 @@ const checkResponse = (res) => {
 
 export const getWeather = async ({ latitude, longitude }, apiKey) => {
   const res = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`,
   );
   return checkResponse(res);
 };
@@ -29,7 +29,11 @@ const isDay = ({ sunrise, sunset }, now) => {
 export const processWeatherData = (data) => {
   const result = {};
   result.city = data.name;
-  result.temp = { F: data.main.temp };
+  const tempF = Math.round(data.main.temp);
+  result.temp = {
+    F: tempF,
+    C: Math.round(((tempF - 32) * 5) / 9),
+  };
   result.type = getWeatherType(result.temp.F);
   result.condition = data.weather[0].main.toLowerCase();
   result.isDay = isDay(data.sys, Date.now());

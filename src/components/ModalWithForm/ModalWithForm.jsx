@@ -2,7 +2,14 @@ import "./ModalWithForm.css";
 import { useRef } from "react";
 import { useModalClose } from "../../hooks/useModalClose.js";
 
-function ModalWithForm({ children, title, buttonText, isOpen, onClose }) {
+function ModalWithForm({
+  children,
+  title,
+  buttonText,
+  isOpen,
+  onClose,
+  onSubmit,
+}) {
   const overlayRef = useRef(null);
 
   useModalClose({
@@ -23,7 +30,7 @@ function ModalWithForm({ children, title, buttonText, isOpen, onClose }) {
           type="button"
           className="modal__close"
         ></button>
-        <form className="modal__form">
+        <form className="modal__form" onSubmit={onSubmit}>
           {children}
           <button type="submit" className="modal__submit">
             {buttonText}

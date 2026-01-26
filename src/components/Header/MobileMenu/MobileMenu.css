@@ -1,0 +1,59 @@
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  background-color: transparent; /* removed modal gray background */
+  cursor: pointer;
+  transition:
+    visibility 0.1s linear 0.3s,
+    opacity 0.3s linear;
+}
+
+.mobile-menu-overlay_opened {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 60px 0;
+  cursor: default;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.mobile-menu__user-container {
+  display: flex;
+  align-items: center;
+}
+
+.mobile-menu__username {
+  margin: 0 12px 0 0;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.mobile-menu__add-btn {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mobile-menu__add-btn:hover {
+  opacity: 0.4;
+}
