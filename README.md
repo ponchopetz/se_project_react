@@ -86,6 +86,13 @@ https://ponchopetz.github.io/se_project_react/
 
 ---
 
+## Project Pitch Video
+
+Check out [this video](https://www.loom.com/share/520eae18aad24ae3a3a33a6294cc0842), where I describe my
+project and some challenges I faced while building it.
+
+---
+
 ## 🛠️ Installation & Setup
 
 Clone the repository:

@@ -19,8 +19,8 @@ const weatherCards = {
 };
 
 const coordinates = {
-  latitude: 25.686613,
-  longitude: -100.316116,
+  latitude: 29.4252,
+  longitude: -98.4946,
 };
 
 const apiKey = "79e5bb92d6c46bf47536631f2633f89c";
