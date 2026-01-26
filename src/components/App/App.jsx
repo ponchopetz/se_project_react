@@ -46,12 +46,11 @@ function App() {
     setActiveModal("");
   };
 
-  const handleAddItemSubmit = (item, resetForm) => {
+  const handleAddItemSubmit = (item) => {
     addItem(item)
       .then((newItem) => {
         setClothingItems((prevItems) => [newItem, ...prevItems]);
         setActiveModal("");
-        resetForm();
       })
       .catch(console.error);
   };

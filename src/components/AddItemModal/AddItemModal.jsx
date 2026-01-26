@@ -1,25 +1,31 @@
+import { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm.js";
 
+const initialValues = {
+  imageName: "",
+  imageUrl: "",
+  weather: "",
+};
+
 function AddItemModal({ isOpen, onClose, onAddItem }) {
-  const { values, handleChange, resetForm } = useForm({
-    imageName: "",
-    imageUrl: "",
-    weather: "",
-  });
+  const { values, errors, isValid, handleChange, resetForm } =
+    useForm(initialValues);
+
+  useEffect(() => {
+    if (isOpen) {
+      resetForm(initialValues, {}, false);
+    }
+  }, [isOpen, resetForm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onAddItem(
-      {
-        _id: Date.now(),
-        name: values.imageName,
-        imageUrl: values.imageUrl,
-        weather: values.weather,
-      },
-      resetForm,
-    );
+    onAddItem({
+      name: values.imageName,
+      imageUrl: values.imageUrl,
+      weather: values.weather,
+    });
   };
 
   return (
@@ -30,6 +36,7 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
+      isValid={isValid}
     >
       <label htmlFor="garment-name" className="modal__label">
         Name {""}
@@ -46,16 +53,17 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
           maxLength="30"
         />
       </label>
-      <label htmlFor="garment-link" className="modal__label">
-        Image {""}
+      <label
+        className={`modal__label ${errors.imageUrl ? "modal__label_error" : ""}`}
+      >
+        Image {errors.imageUrl && <span>({errors.imageUrl})</span>}
         <input
-          className="modal__input"
-          id="garment-link"
+          className={`modal__input ${errors.imageUrl ? "modal__input_error" : ""}`}
           name="imageUrl"
-          value={values.imageUrl}
-          onChange={handleChange}
           type="url"
           placeholder="Image URL"
+          value={values.imageUrl}
+          onChange={handleChange}
           required
         />
       </label>

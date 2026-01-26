@@ -9,6 +9,7 @@ function ModalWithForm({
   isOpen,
   onClose,
   onSubmit,
+  isValid,
 }) {
   const overlayRef = useRef(null);
 
@@ -32,7 +33,7 @@ function ModalWithForm({
         ></button>
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
-          <button type="submit" className="modal__submit">
+          <button disabled={!isValid} type="submit" className="modal__submit">
             {buttonText}
           </button>
         </form>
