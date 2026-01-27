@@ -8,7 +8,7 @@ function ToggleSwitch() {
   );
 
   return (
-    <label htmlFor="" className="toggle-switch">
+    <label className="toggle-switch">
       <input
         type="checkbox"
         checked={currentTemperatureUnit === "C"}

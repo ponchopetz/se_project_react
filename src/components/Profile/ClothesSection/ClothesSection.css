@@ -30,3 +30,10 @@
 .clothes-section__add-btn:hover {
   opacity: 1;
 }
+
+@media screen and (max-width: 845px) {
+  .clothes-section__header {
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+}

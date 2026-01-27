@@ -21,3 +21,21 @@
   font-size: 1.25em;
   line-height: 1;
 }
+
+@media screen and (max-width: 845px) {
+  .sidebar {
+    max-width: none;
+  }
+
+  .sidebar__user-info {
+    max-width: none;
+    padding: 20px 0;
+    justify-content: flex-start;
+    gap: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
+  .sidebar__username {
+    align-self: flex-start;
+  }
+}

@@ -1,6 +1,6 @@
 import "./Header.css";
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import headerLogo from "../../assets/wtwr_logo.svg";
 import avatar from "../../assets/avatar.png";
 import { getCurrentDate } from "../../utils/dateUtils.js";
@@ -24,17 +24,23 @@ function Header({ handleAddClick, weatherData }) {
     setIsMobileMenuOpened((prev) => !prev);
   };
 
+  const location = useLocation();
+  const isProfile = location.pathname === "/profile";
+
   return (
-    <header className="header">
-      <Link to="/">
-        <img className="header__logo" src={headerLogo} alt="WTWR logo" />
-      </Link>
+    <header className={`header ${isProfile ? "header__profile" : ""}`}>
+      <div className="header__left">
+        <Link to="/">
+          <img className="header__logo" src={headerLogo} alt="WTWR logo" />
+        </Link>
+        <p className="header__date-and-location">
+          {getCurrentDate()}, {weatherData.city}
+        </p>
+      </div>
 
-      <p className="header__date-and-location">
-        {getCurrentDate()}, {weatherData.city}
-      </p>
-
-      <ToggleSwitch />
+      <div className="header__toggle-wrapper">
+        <ToggleSwitch />
+      </div>
 
       <button
         onClick={handleAddClick}

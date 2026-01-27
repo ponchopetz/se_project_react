@@ -7,12 +7,18 @@
   line-height: 1.2;
 }
 
+/* LEFT GROUP (logo + date) */
+.header__left {
+  display: flex;
+  align-items: center;
+}
+
+/* LOGO */
 .header__logo {
   width: 89px;
   height: 40px;
   margin-right: 24px;
   cursor: pointer;
-  padding: 4px 8px;
   box-sizing: border-box;
   border-radius: 0;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
@@ -27,10 +33,19 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
+/* DATE */
 .header__date-and-location {
   margin: 0;
 }
 
+/* TOGGLE */
+.header__toggle-wrapper {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+/* USER */
 .header__user-container {
   display: flex;
   align-items: center;
@@ -56,6 +71,18 @@
   text-decoration: none;
 }
 
+.header__username {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.header__avatar {
+  width: 40px;
+  height: 40px;
+}
+
+/* ADD BUTTON */
 .header__add-clothes-btn {
   margin: 0 20px;
   padding: 0;
@@ -68,17 +95,7 @@
   opacity: 0.6;
 }
 
-.header__username {
-  font-size: 20px;
-  line-height: 24px;
-  font-weight: 700;
-}
-
-.header__avatar {
-  width: 40px;
-  height: 40px;
-}
-
+/* MENU BUTTON */
 .header__menu-btn {
   display: none;
   border: none;
@@ -106,9 +123,19 @@
   border-radius: 0;
 }
 
+/* =========================
+   MOBILE
+========================= */
 @media screen and (max-width: 845px) {
   .header {
     padding: 18px 0 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* HOME MOBILE:
+     logo on top, date below */
+  .header__left {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -117,11 +144,41 @@
     margin-top: 32px;
   }
 
+  /* PROFILE MOBILE OVERRIDES */
+  .header__profile {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+  }
+
+  .header__profile .header__left {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .header__profile .header__logo {
+    margin-right: 0;
+  }
+
+  .header__profile .header__date-and-location {
+    margin: 0;
+    font-size: 16px;
+    line-height: 20px;
+    align-self: center;
+  }
+
+  /* HIDE DESKTOP-ONLY ELEMENTS */
+  .header__toggle-wrapper {
+    display: none;
+  }
+
   .header__user-container,
   .header__add-clothes-btn {
     display: none;
   }
 
+  /* SHOW MENU BUTTON */
   .header__menu-btn {
     display: block;
   }

@@ -1,5 +1,7 @@
 import "./MobileMenu.css";
+import { Link } from "react-router-dom";
 import avatar from "../../../assets/avatar.png";
+import ToggleSwitch from "../../ToggleSwitch/ToggleSwitch";
 
 function MobileMenu({ isOpen, handleAddClick, menuRef }) {
   return (
@@ -10,10 +12,10 @@ function MobileMenu({ isOpen, handleAddClick, menuRef }) {
       }`}
     >
       <div className="mobile-menu">
-        <div className="mobile-menu__user-container">
+        <Link to="/profile" className="mobile-menu__user-container">
           <p className="mobile-menu__username">Terrence Tegegne</p>
           <img className="header__avatar" src={avatar} alt="User avatar" />
-        </div>
+        </Link>
 
         <button
           onClick={handleAddClick}
@@ -22,6 +24,9 @@ function MobileMenu({ isOpen, handleAddClick, menuRef }) {
         >
           + Add Clothes
         </button>
+        <div className="mobile-menu__toggle-wrapper">
+          <ToggleSwitch className="mobile-menu__toggle" />
+        </div>
       </div>
     </div>
   );
