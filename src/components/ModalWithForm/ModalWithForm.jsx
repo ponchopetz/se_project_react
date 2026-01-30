@@ -10,6 +10,7 @@ function ModalWithForm({
   onClose,
   onSubmit,
   isValid,
+  formRef,
 }) {
   const overlayRef = useRef(null);
 
@@ -31,9 +32,19 @@ function ModalWithForm({
           type="button"
           className="modal__close"
         ></button>
-        <form className="modal__form" onSubmit={onSubmit}>
+        <form
+          noValidate
+          ref={formRef}
+          className="modal__form"
+          onSubmit={onSubmit}
+        >
           {children}
-          <button disabled={!isValid} type="submit" className="modal__submit">
+          <button
+            type="submit"
+            className={`modal__submit${
+              isValid ? " modal__submit_enabled" : ""
+            }`}
+          >
             {buttonText}
           </button>
         </form>

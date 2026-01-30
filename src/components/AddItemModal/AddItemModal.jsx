@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm.js";
 
@@ -9,7 +9,9 @@ const initialValues = {
 };
 
 function AddItemModal({ isOpen, onClose, onAddItem }) {
-  const { values, errors, isValid, handleChange, resetForm } =
+  const formRef = useRef(null);
+
+  const { values, errors, isValid, handleChange, validateForm, resetForm } =
     useForm(initialValues);
 
   useEffect(() => {
@@ -21,6 +23,10 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!validateForm(formRef.current)) {
+      return;
+    }
+
     onAddItem({
       name: values.imageName,
       imageUrl: values.imageUrl,
@@ -31,44 +37,55 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
   return (
     <ModalWithForm
       title="New garment"
-      name="new-card"
       buttonText="Add garment"
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
       isValid={isValid}
+      formRef={formRef}
     >
-      <label htmlFor="garment-name" className="modal__label">
-        Name {""}
+      {/* Name */}
+      <label
+        className={`modal__label ${errors.imageName ? "modal__label_error" : ""}`}
+      >
+        Name {errors.imageName && <span>(Please enter a name.)</span>}
         <input
-          className="modal__input"
-          id="garment-name"
+          className={`modal__input ${
+            errors.imageName ? "modal__input_error" : ""
+          }`}
           name="imageName"
           value={values.imageName}
           onChange={handleChange}
           type="text"
-          placeholder="Name"
           required
           minLength="2"
-          maxLength="30"
         />
       </label>
+
+      {/* Image */}
       <label
         className={`modal__label ${errors.imageUrl ? "modal__label_error" : ""}`}
       >
         Image {errors.imageUrl && <span>({errors.imageUrl})</span>}
         <input
-          className={`modal__input ${errors.imageUrl ? "modal__input_error" : ""}`}
+          className={`modal__input ${
+            errors.imageUrl ? "modal__input_error" : ""
+          }`}
           name="imageUrl"
           type="url"
-          placeholder="Image URL"
           value={values.imageUrl}
           onChange={handleChange}
           required
         />
       </label>
+
+      {/* Weather */}
       <fieldset className="modal__radio-buttons">
-        <legend className="modal__legend">Select the weather type:</legend>
+        <legend
+          className={`modal__legend ${errors.weather ? "modal__label_error" : ""}`}
+        >
+          {errors.weather && <span> (Please select a weather type.)</span>}
+        </legend>
 
         {["hot", "warm", "cold"].map((type) => (
           <label key={type} className="modal__label modal__label_type_radio">

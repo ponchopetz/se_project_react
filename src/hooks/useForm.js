@@ -24,6 +24,35 @@ export function useForm(initialValues = {}) {
     }
   };
 
+  // 👇 NEW: validate entire form on submit
+  const validateForm = (form) => {
+    const inputs = Array.from(form.elements).filter((el) => el.name);
+
+    const newErrors = {};
+    let valid = true;
+
+    inputs.forEach((input) => {
+      // Special handling for radio groups
+      if (input.type === "radio") {
+        if (!form.querySelector(`input[name="${input.name}"]:checked`)) {
+          newErrors[input.name] = true; // Just a flag, not a message
+          valid = false;
+        }
+        return;
+      }
+
+      if (!input.validity.valid) {
+        newErrors[input.name] = input.validationMessage;
+        valid = false;
+      }
+    });
+
+    setErrors(newErrors);
+    setIsValid(valid);
+
+    return valid;
+  };
+
   const resetForm = useCallback(
     (newValues = initialValues, newErrors = {}, newIsValid = false) => {
       setValues(newValues);
@@ -33,5 +62,12 @@ export function useForm(initialValues = {}) {
     [initialValues],
   );
 
-  return { values, errors, isValid, handleChange, resetForm };
+  return {
+    values,
+    errors,
+    isValid,
+    handleChange,
+    validateForm,
+    resetForm,
+  };
 }
