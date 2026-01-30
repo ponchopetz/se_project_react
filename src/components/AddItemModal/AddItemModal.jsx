@@ -49,7 +49,7 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
           type="text"
           placeholder="Name"
           required
-          minLength="1"
+          minLength="2"
           maxLength="30"
         />
       </label>
@@ -73,6 +73,7 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
         {["hot", "warm", "cold"].map((type) => (
           <label key={type} className="modal__label modal__label_type_radio">
             <input
+              className="modal__input modal__input_type_radio"
               type="radio"
               name="weather"
               value={type}
@@ -80,7 +81,7 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
               onChange={handleChange}
               required
             />
-            {type}
+            {type.charAt(0).toUpperCase() + type.slice(1)}
           </label>
         ))}
       </fieldset>

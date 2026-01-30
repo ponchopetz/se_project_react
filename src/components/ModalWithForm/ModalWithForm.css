@@ -60,8 +60,8 @@
 
 .modal__label_type_radio {
   display: flex;
+  align-items: center;
   gap: 8px;
-  align-items: flex-start;
   color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
   transition: color 0.2s ease;
@@ -102,6 +102,7 @@
   display: inline;
   width: initial;
   accent-color: black;
+  margin-top: 0;
 }
 
 .modal__radio-buttons {
@@ -134,7 +135,7 @@
 /* Validation: disabled submit */
 .modal__submit:disabled {
   opacity: 0.3;
-  cursor: not-allowed;
+  cursor: default;
 }
 
 @media screen and (max-width: 845px) {
