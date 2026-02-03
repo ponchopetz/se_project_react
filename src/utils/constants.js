@@ -18,11 +18,11 @@ const weatherCards = {
   },
 };
 
-const coordinates = {
+const defaultCoordinates = {
   latitude: 29.4252,
   longitude: -98.4946,
 };
 
 const apiKey = "79e5bb92d6c46bf47536631f2633f89c";
 
-export { weatherCards, coordinates, apiKey };
+export { weatherCards, defaultCoordinates, apiKey };

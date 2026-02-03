@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { coordinates, apiKey } from "../../utils/constants.js";
+import { defaultCoordinates, apiKey } from "../../utils/constants.js";
 import Header from "../Header/Header";
 import Profile from "../Profile/Profile.jsx";
 import Main from "../Main/Main";
@@ -12,6 +12,33 @@ import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmati
 import { getWeather, processWeatherData } from "../../utils/weatherApi.js";
 import { getItems, addItem, deleteItem } from "../../utils/api.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
+
+// Helper to get user coordinates
+const getUserCoordinates = () => {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      reject(new Error("Geolocation not supported"));
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        resolve({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      },
+      (error) => {
+        reject(error);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0,
+      },
+    );
+  });
+};
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -74,12 +101,24 @@ function App() {
   };
 
   useEffect(() => {
-    getWeather(coordinates, apiKey)
-      .then((data) => {
-        const filteredData = processWeatherData(data);
-        setWeatherData(filteredData);
-      })
-      .catch(console.error);
+    const fetchWeather = async () => {
+      try {
+        const userCoords = await getUserCoordinates();
+        const data = await getWeather(userCoords, apiKey);
+        setWeatherData(processWeatherData(data));
+      } catch (err) {
+        console.warn("Falling back to default coordinates:", err);
+
+        try {
+          const data = await getWeather(defaultCoordinates, apiKey);
+          setWeatherData(processWeatherData(data));
+        } catch (fallbackErr) {
+          console.error("Failed to fetch weather:", fallbackErr);
+        }
+      }
+    };
+
+    fetchWeather();
   }, []);
 
   useEffect(() => {

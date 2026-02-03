@@ -19,10 +19,9 @@
   height: 40px;
   margin-right: 24px;
   cursor: pointer;
-  box-sizing: border-box;
   border-radius: 0;
+  border: 8px solid transparent;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  background-color: transparent;
   transition:
     box-shadow 0.6s ease,
     border-radius 0.6s ease;
