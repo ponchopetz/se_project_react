@@ -28,6 +28,7 @@ const checkToken = async (token) => {
   const res = await fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
+      "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
   });

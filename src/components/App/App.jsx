@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { defaultCoordinates, apiKey } from "../../utils/constants.js";
+
 import Header from "../Header/Header";
 import Profile from "../Profile/Profile.jsx";
 import Main from "../Main/Main";
@@ -12,6 +12,8 @@ import LoginModal from "../LoginModal/LoginModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
+
+import { defaultCoordinates, apiKey } from "../../utils/constants.js";
 import { getWeather, processWeatherData } from "../../utils/weatherApi.js";
 import {
   getItems,
@@ -22,8 +24,10 @@ import {
   removeCardLike,
 } from "../../utils/api.js";
 import { login, register, checkToken } from "../../utils/auth.js";
+
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
+
 import "./App.css";
 
 // Helper to get user coordinates
@@ -107,20 +111,9 @@ function App() {
   };
 
   const handleRegister = ({ name, avatar, email, password }) => {
-    register(name, avatar, email, password)
-      .then(() => {
-        return login(email, password);
-      })
-      .then((data) => {
-        localStorage.setItem("jwt", data.token);
-        return checkToken(data.token);
-      })
-      .then((userData) => {
-        setIsLoggedIn(true);
-        setCurrentUser(userData);
-        setActiveModal("");
-      })
-      .catch(console.error);
+    register(name, avatar, email, password).then(() => {
+      return handleLogin({ email, password });
+    });
   };
 
   const handleLogout = () => {
