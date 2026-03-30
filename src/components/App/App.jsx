@@ -201,7 +201,7 @@ function App() {
   useEffect(() => {
     getItems()
       .then((items) => {
-        setClothingItems(items.sort((a, b) => b._id - a._id));
+        setClothingItems(items);
       })
       .catch(console.error);
   }, []);

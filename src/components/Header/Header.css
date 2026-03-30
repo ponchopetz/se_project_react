@@ -188,12 +188,10 @@
   }
 
   /* HIDE DESKTOP-ONLY ELEMENTS */
-  .header__toggle-wrapper {
-    display: none;
-  }
-
+  .header__toggle-wrapper,
   .header__user-container,
-  .header__add-clothes-btn {
+  .header__add-clothes-btn,
+  .header__auth-buttons {
     display: none;
   }
 

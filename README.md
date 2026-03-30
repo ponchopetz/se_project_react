@@ -1,105 +1,53 @@
-# 👕 What to Wear — React Weather-Based Clothing App
+# What to Wear — Full-Stack Weather-Based Clothing App
 
-## Related Repositories
+A full-stack React application that recommends clothing based on live weather data. Users can register, log in, manage their wardrobe, like items, and edit their profile. The frontend communicates with a custom REST API backed by MongoDB.
 
-- **Backend:** [se_project_express](https://github.com/ponchopetz/se_project_express)
-
-## 📖 Project Description
-
-**What to Wear** is a responsive React application that helps users browse clothing items based on current weather conditions.  
-Users can preview clothing items, view detailed images in a modal, and add new garments through a form-driven interface.
-
-The project focuses on **component-based architecture**, **state-driven UI**, and **real-world frontend patterns**, simulating how modern React applications are built, extended, and maintained.
+**Backend repository:** [se_project_express](https://github.com/ponchopetz/se_project_express)
 
 ---
 
-## ✨ Functionality
+## Features
 
-- Fetches live weather data from an external API
-- Determines weather type (hot, warm, cold) and day/night state
-- Displays a weather-specific visual card
-- Filters clothing items based on current weather
-- Opens a **preview modal** when a clothing card is clicked
-- Opens a **form modal** to add new garments
-- Supports closing modals via:
-  - close button
-  - clicking outside the modal
-  - pressing the `ESC` key
-- Responsive header with mobile navigation menu
+- Live weather data from OpenWeather API with automatic geolocation
+- JWT-based authentication: register, log in, persistent sessions via localStorage
+- Protected routes — unauthorized users are redirected away from `/profile`
+- Add, view, and delete clothing items (owner-only deletion enforced)
+- Like / unlike items with real-time state updates
+- Edit profile name and avatar URL
+- Responsive layout with mobile navigation menu
+- Modals close on outside click, Escape key, or close button
 
 ---
 
-## 🧠 Technologies & Strategies Used
+## Tech Stack
 
-### **Core Technologies**
+### Frontend
 
-- **React** — Functional components and hooks
-- **JavaScript (ES6+)** — Async/await, destructuring, modules
-- **HTML5** — Semantic, accessible markup
-- **CSS3** — Flexbox, media queries, transitions
-- **Vite** — Fast dev server and optimized builds
-- **Git & GitHub** — Version control and deployment
-- **Prettier** — Automated, consistent code formatting
+- **React 18** — functional components, hooks (`useState`, `useEffect`, `useContext`, `useRef`)
+- **React Router v6** — client-side routing with protected route pattern
+- **Vite** — dev server and production build tooling
+- **CSS3** — BEM methodology, Flexbox, responsive design with media queries
+- **Context API** — global current user state shared across component tree
 
----
+### Backend
 
-### **React & Architecture Patterns**
+- **Node.js / Express** — RESTful API with JWT auth, rate limiting, Helmet security headers
+- **MongoDB / Mongoose** — document storage with schema validation
+- **bcryptjs** — password hashing
+- **jsonwebtoken** — token signing and verification
 
-- **Component-based design** for scalability and reuse
-- **Unidirectional data flow** using props
-- **Local state management** with `useState`
-- **Side effects & lifecycle control** using `useEffect`
-- **Custom hooks** to share modal behavior across components
-- **Separation of concerns** between UI, logic, and data processing
+### Patterns & Practices
 
----
-
-### **API & Data Handling**
-
-- External weather data fetched from **OpenWeather API**
-- Dedicated API utility layer (`weatherApi.js`)
-- Weather data normalization via a processing function
-- Day/night detection using sunrise/sunset timestamps
-- Defensive defaults for missing or unsupported weather conditions
+- Custom hooks: `useForm` (controlled form state + validation), `useModalClose` (Escape + outside click)
+- Unidirectional data flow — all state mutations handled in `App`, passed down via props
+- Token-protected API calls with `Authorization: Bearer` header
+- BEM naming convention throughout CSS
 
 ---
 
-### **UI / UX Strategies**
+## Running Locally
 
-- Controlled modals with smooth open/close transitions
-- Outside-click and keyboard (`ESC`) accessibility support
-- Responsive header with a mobile-friendly navigation menu
-- Conditional rendering for mobile vs desktop layouts
-- Cursor feedback and visual affordances for interactive elements
-
----
-
-### **Code Quality & Maintainability**
-
-- Reusable helper functions and constants
-- Clean folder structure organized by feature
-- Avoidance of duplicated logic through shared utilities
-- Predictable state updates and explicit event handling
-
----
-
-## 🚀 Live Deployment
-
-👉 **GitHub Pages:**  
-https://ponchopetz.github.io/se_project_react/
-
----
-
-## Project Pitch Video
-
-Check out [this video](https://www.loom.com/share/520eae18aad24ae3a3a33a6294cc0842), where I describe my
-project and some challenges I faced while building it.
-
----
-
-## 🛠️ Installation & Setup
-
-Clone the repository:
+Requires the [backend](https://github.com/ponchopetz/se_project_express) running on `localhost:3001`.
 
 ```bash
 git clone https://github.com/ponchopetz/se_project_react.git

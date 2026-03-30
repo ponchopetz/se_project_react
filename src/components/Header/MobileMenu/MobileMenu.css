@@ -60,6 +60,19 @@
   opacity: 0.4;
 }
 
+.mobile-menu__auth-btn {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mobile-menu__auth-btn:hover {
+  opacity: 0.6;
+}
+
 .mobile-menu__toggle-wrapper {
   display: flex;
   justify-content: center;

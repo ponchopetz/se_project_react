@@ -106,6 +106,8 @@ function Header({
         onClose={closeMenu}
         handleAddClick={handleAddClick}
         menuRef={menuRef}
+        onSignInClick={onSignInClick}
+        onRegisterClick={onRegisterClick}
       />
     </header>
   );
