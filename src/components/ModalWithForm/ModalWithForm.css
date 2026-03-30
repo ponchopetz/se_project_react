@@ -131,6 +131,7 @@
   padding: 8px 16px;
   transition: opacity 0.2s;
   cursor: default;
+  white-space: nowrap;
 }
 
 .modal__submit_enabled {

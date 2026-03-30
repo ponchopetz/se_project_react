@@ -1,5 +1,9 @@
 # 👕 What to Wear — React Weather-Based Clothing App
 
+## Related Repositories
+
+- **Backend:** [se_project_express](https://github.com/ponchopetz/se_project_express)
+
 ## 📖 Project Description
 
 **What to Wear** is a responsive React application that helps users browse clothing items based on current weather conditions.  
