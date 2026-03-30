@@ -11,6 +11,8 @@ function ModalWithForm({
   onSubmit,
   isValid,
   formRef,
+  secondaryText,
+  onSecondaryAction,
 }) {
   const overlayRef = useRef(null);
 
@@ -39,14 +41,25 @@ function ModalWithForm({
           onSubmit={onSubmit}
         >
           {children}
-          <button
-            type="submit"
-            className={`modal__submit${
-              isValid ? " modal__submit_enabled" : ""
-            }`}
-          >
-            {buttonText}
-          </button>
+          <div className="modal__buttons">
+            <button
+              type="submit"
+              className={`modal__submit${
+                isValid ? " modal__submit_enabled" : ""
+              }`}
+            >
+              {buttonText}
+            </button>
+            {secondaryText && (
+              <button
+                type="button"
+                className="modal__secondary"
+                onClick={onSecondaryAction}
+              >
+                {secondaryText}
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>

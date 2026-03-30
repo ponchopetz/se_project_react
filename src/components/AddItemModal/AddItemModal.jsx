@@ -59,6 +59,7 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
           type="text"
           required
           minLength="2"
+          placeholder="Name"
         />
       </label>
 
@@ -76,6 +77,7 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
           value={values.imageUrl}
           onChange={handleChange}
           required
+          placeholder="Image URL"
         />
       </label>
 

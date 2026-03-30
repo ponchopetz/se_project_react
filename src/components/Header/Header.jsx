@@ -1,14 +1,21 @@
 import "./Header.css";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import headerLogo from "../../assets/wtwr_logo.svg";
-import avatar from "../../assets/avatar.png";
 import { getCurrentDate } from "../../utils/dateUtils.js";
 import { useModalClose } from "../../hooks/useModalClose.js";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.jsx";
 import MobileMenu from "./MobileMenu/MobileMenu.jsx";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({
+  handleAddClick,
+  weatherData,
+  onSignInClick,
+  onRegisterClick,
+}) {
+  const { currentUser } = useContext(CurrentUserContext);
+
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
   const menuRef = useRef(null);
 
@@ -42,18 +49,47 @@ function Header({ handleAddClick, weatherData }) {
         <ToggleSwitch />
       </div>
 
-      <button
-        onClick={handleAddClick}
-        type="button"
-        className="header__add-clothes-btn"
-      >
-        + Add Clothes
-      </button>
+      {currentUser && (
+        <button
+          onClick={handleAddClick}
+          type="button"
+          className="header__add-clothes-btn"
+        >
+          + Add Clothes
+        </button>
+      )}
 
-      <Link to="/profile" className="header__user-container">
-        <p className="header__username">Terrence Tegegne</p>
-        <img className="header__avatar" src={avatar} alt="User avatar" />
-      </Link>
+      {currentUser ? (
+        <Link to="/profile" className="header__user-container">
+          <p className="header__username">{currentUser.name}</p>
+          {currentUser.avatar ? (
+            <img
+              className="header__avatar"
+              src={currentUser.avatar}
+              alt="User avatar"
+            />
+          ) : (
+            <div className="header__avatar">{currentUser.name?.[0]}</div>
+          )}
+        </Link>
+      ) : (
+        <div className="header__auth-buttons">
+          <button
+            type="button"
+            className="header__auth-btn"
+            onClick={onSignInClick}
+          >
+            Sign in
+          </button>
+          <button
+            type="button"
+            className="header__auth-btn"
+            onClick={onRegisterClick}
+          >
+            Register
+          </button>
+        </div>
+      )}
 
       <button
         className={`header__menu-btn ${

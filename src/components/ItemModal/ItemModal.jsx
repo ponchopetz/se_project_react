@@ -1,8 +1,12 @@
 import "./ItemModal.css";
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import { useModalClose } from "../../hooks/useModalClose.js";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 function ItemModal({ isOpen, card, onClose, onDeleteClick }) {
+  const { currentUser } = useContext(CurrentUserContext);
+  const isOwn = card.owner === currentUser?._id;
+
   const overlayRef = useRef(null);
 
   useModalClose({
@@ -27,13 +31,15 @@ function ItemModal({ isOpen, card, onClose, onDeleteClick }) {
         <div className="item-modal__footer">
           <div className="item-modal__container">
             <p className="item-modal__caption">{card.name}</p>
-            <button
-              type="button"
-              className="item-modal__delete-btn"
-              onClick={() => onDeleteClick(card)}
-            >
-              Delete item
-            </button>
+            {isOwn && (
+              <button
+                type="button"
+                className="item-modal__delete-btn"
+                onClick={() => onDeleteClick(card)}
+              >
+                Delete item
+              </button>
+            )}
           </div>
           <p className="item-modal__weather">Weather: {card.weather}</p>
         </div>
