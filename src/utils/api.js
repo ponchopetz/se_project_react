@@ -1,6 +1,9 @@
 import checkResponse from "./request.js";
 
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.choosewtwr.certified.cl"
+    : "http://localhost:3001";
 
 const getItems = async () => {
   const res = await fetch(`${baseUrl}/items`);

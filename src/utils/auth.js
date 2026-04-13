@@ -1,6 +1,9 @@
 import checkResponse from "./request.js";
 
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.choosewtwr.certified.cl"
+    : "http://localhost:3001";
 
 const register = async (name, avatar, email, password) => {
   const res = await fetch(`${baseUrl}/signup`, {
