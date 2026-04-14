@@ -1,7 +1,7 @@
 import checkResponse from "./request.js";
 
 const baseUrl =
-  process.env.NODE_ENV === "production"
+  import.meta.env.MODE === "production"
     ? "https://api.choosewtwr.certified.cl"
     : "http://localhost:3001";
 

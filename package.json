@@ -7,7 +7,7 @@
     "dev": "vite --open",
     "build": "vite build",
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./dist/* alfonsomtzpetz@choosewtwr.certified.cl:/home/alfonsomtzpetz/frontend",
+    "deploy": "npm run build && ssh alfonsomtzpetz@choosewtwr.certified.cl 'sudo chown -R alfonsomtzpetz:alfonsomtzpetz /var/www/frontend && rm -rf /var/www/frontend/*' && scp -r ./dist/* alfonsomtzpetz@choosewtwr.certified.cl:/var/www/frontend && ssh alfonsomtzpetz@choosewtwr.certified.cl 'sudo chown -R www-data:www-data /var/www/frontend'",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
