@@ -2,6 +2,8 @@
 
 A full-stack React application that recommends clothing based on live weather data. Users can register, log in, manage their wardrobe, like items, and edit their profile. The frontend communicates with a custom REST API backed by MongoDB.
 
+**Live site:** [choosewtwr.certified.cl](https://choosewtwr.certified.cl)
+
 **Backend repository:** [se_project_express](https://github.com/ponchopetz/se_project_express)
 
 ---
